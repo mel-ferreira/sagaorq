@@ -3,6 +3,14 @@ server:
 
 spring:
 
+  kafka:
+    bootstrap-servers: ${KAFKA_BROKER:localhost:9092}
+    topic:
+      teste: teste
+    consumer:
+      group-id: payment-group
+      auto-offset-reset: latest
+
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3308}/${DB_NAME:paymentdb}
@@ -15,3 +23,9 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
+
+logging:
+  level:
+    org:
+      apache:
+        kafka: OFF
